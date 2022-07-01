@@ -1,0 +1,53 @@
+<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['/home']">&nbsp;
+    <img class="logo-survey" src="../assets/imagenes/logit.png" alt="logo" />
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+<section>
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <div class="mb-md-5 mt-md-4 pb-5">
+
+              <a>
+                <img class="logo-uni" src="../assets/imagenes/escudo2.png" />
+              </a>
+
+              <h2 class="fw-bold mb-2 text-uppercase">Registrarse</h2>
+              <p class="text-white-50 mb-5">Por favor llena los campos para registrarte!</p>
+
+              <div class="form-outline form-white mb-4">
+                <input [(ngModel)]="user.nombreusuario" type="nombreusuario" id="typeEmailX" class="form-control form-control-lg" />
+                <label class="form-label" >Nombre</label>
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                <input [(ngModel)]="user.correo" type="email" id="typeEmailX" class="form-control form-control-lg" />
+                <label class="form-label" for="typeEmailX">Correo</label>
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                <input [(ngModel)]="user.clave" type="password" id="typePasswordX" class="form-control form-control-lg" />
+                <label class="form-label" for="typePasswordX">Contraseña</label>
+              </div>
+              <div class="form-outline form-white mb-4">
+                <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                <label class="form-label" for="typePasswordX">Confirmar Contraseña</label>
+              </div>
+              <button (click)="register()" class="btn btn-outline-light btn-lg px-5" type="submit">Registrarse</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

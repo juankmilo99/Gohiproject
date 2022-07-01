@@ -1,0 +1,130 @@
+<div class="container-fluid">
+  <nav class="pt1">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a [routerLink]="['/dash']">
+          <i class="fa fa-home"></i>
+        </a>
+      </li>
+      <li class="breadcrumb-item active">usuario respuesta</li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <div class="col-8">
+      <table class="table table-striped table-hover table-sm manito">
+        <thead class="bg-dark text-white">
+          <tr>
+            <th style="width: 25%;">ID</th>
+            <th style="width: 20%;">usuarioID</th>
+            <th style="width: 25%;">respuestaID</th>
+            <th style="width: 10%;">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let res of usuarioRespuestaArr ; let indice=index" (click)="seleccionarUsuarioRespuesta(res)"
+            [class.table-primary]="res==usuarioRespuestaSeleccionada">
+            <td>{{indice+1}}</td>
+            <td>{{res.usuarioid}}</td>
+            <td>{{res.respuestaid}}</td>
+            <td><i class="far fa-trash-alt papeleraRoja" (click)="abrirModal(ventanaEliminar,res)"></i></td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <form>
+        <div class="mb-3 row">
+          <label class="col-sm-4 text-success">usuario</label>
+          <div class="col-sm-8">
+            <select class="form-select col-sm-10" id="propietario" name="propietario"
+              [(ngModel)]="usuarioRespuestaSeleccionada.usuarioid">
+              <option *ngFor="let jim of usuarioArr;" [ngValue]="jim.usuarioid" [disabled]="jim.usuarioid==0" >
+                {{jim.nombreusuario}}
+              </option>
+
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label class="col-sm-4 text-success">respuestaID</label>
+          <div class="col-sm-8">
+            <select class="form-select col-sm-10" id="propietario1" name="propietario1"
+              [(ngModel)]="usuarioRespuestaSeleccionada.respuestaid">
+              <option *ngFor="let dim of respuestaArr;" [ngValue]="dim.respuestaid" [disabled]="dim.respuestaid==0" >
+                {{dim.respuestaid}}
+              </option>
+
+            </select>
+          </div>
+        </div>
+
+
+
+        <div *ngIf="
+        usuarioRespuestaSeleccionada.usuariorespuestaid == 0;
+        then crearUsuarioRespuesta;
+           else acualizarUsuarioRespuesta
+             "></div>
+
+             <ng-template #crearUsuarioRespuesta>
+              <div class="row g-3 mt-1 align-items-center">
+                <div class="col-3"></div>
+                <div class="col-8">
+                  <div class="d-grid gap-1 col-12">
+                    <button class="bt btn-primary btn-sm" (click)="agregarUsuarioRespuesta()">
+                      Crear Respuesta
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+
+            <ng-template #acualizarUsuarioRespuesta>
+              <div class="row g-3 mt-1 align-items-center">
+                <div class="col-3"></div>
+                <div class="col-8">
+                  <div class="d-grid gap-1 col-12">
+                    <button class="bt btn-primary btn-sm"(click)="actualizarUsuarioRespuesta()">
+                      Actualizar Respuesta
+                    </button>
+                    <button class="bt btn-primary btn-sm"(click)="resetearUsuarioRespuesta()">
+                      Cancelar Respuesta
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+
+      </form>
+    </div>
+
+
+  </div>
+  <ng-template #ventanaEliminar>
+    <div class="modal-header bg-dark text-white" style="padding: 4px">
+      <h5 class="modal-title">
+        {{ modalTitulo }}
+      </h5>
+      <button type="button" class="btn btn-sm text-white" (click)="modalRef.hide()">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>
+        {{ modalCuerpo }} <br />
+        <strong>{{ modalContenido }}</strong>
+      </p>
+    </div>
+    <div class="modal-footer" style="padding: 4px">
+      <button type="button" class="btn btn-danger btn-sm" (click)="btnBorrarUsuarioRespuesta()">
+        Eliminar
+      </button>
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="btnCancelar()">
+        Cancelar
+      </button>
+    </div>
+  </ng-template>
+</div>

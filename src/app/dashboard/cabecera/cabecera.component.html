@@ -1,0 +1,36 @@
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" [routerLink]="['/dash']">&nbsp;
+      <img class="logo-survey" src="../assets/imagenes/homepage.png" alt="logo" />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item ml-5">
+          <a class="nav-link" [routerLink]="['/dash/dashHome']" routerLinkActive="active">Inicio</a>
+        </li>
+        <li class="nav-item ml-5">
+          <a class="nav-link" [routerLink]="['/dash/encuestaDim']" routerLinkActive="active">encuesta</a>
+        </li>
+        <li class="nav-item ml-5">
+          <a class="nav-link" [routerLink]="['/dash/preguntas']" routerLinkActive="active">llenar Encuesta</a>
+        </li>
+        <li class="nav-item ml-5">
+          <a class="nav-link" [routerLink]="['/dash/usuarioencuesta']" routerLinkActive="active">asignar encuesta</a>
+        </li>
+        <li class="nav-item ml-5">
+          <a class="nav-link" [routerLink]="['/dash/respuesta']" routerLinkActive="active">respuestas</a>
+        </li>
+        <li class="nav-item ml-5">
+          <a class="nav-link" [routerLink]="['/dash/usuariorespuesta']" routerLinkActive="active">usuarioRespuesta</a>
+        </li>
+      </ul>
+      <button class="btn btn-light" type="button"><a  (click)="authService.logOut()">{{ titulo }}</a></button>
+
+    </div>
+  </nav>
+
