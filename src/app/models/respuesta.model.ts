@@ -2,6 +2,7 @@ export class Respuesta {
   public respuestaid: number;
   public preguntaid: number;
   public respuesta: number;
+  public usuarioid: number;
 
 
 
@@ -9,11 +10,14 @@ export class Respuesta {
     cod: number,
     id: number,
     doc: number,
+    usu: number,
+
 
   ) {
     this.respuestaid=id;
     this.preguntaid= cod;
     this.respuesta= doc;
+    this.usuarioid=usu;
 
   }
 }

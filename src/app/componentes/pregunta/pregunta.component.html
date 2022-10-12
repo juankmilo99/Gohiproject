@@ -15,8 +15,8 @@
       <table class="table table-striped table-hover table-sm manito">
         <thead class="bg-dark text-white">
           <tr>
-            <th style="width: 10%;">ID</th>
-            <th style="width: 10%;">EncuestaID</th>
+            <th style="width: 5%;">ID</th>
+            <th style="width: 15%;">Encuesta</th>
             <th style="width: 70%;">Pregunta</th>
             <th style="width: 10%;">&nbsp;</th>
           </tr>
@@ -25,7 +25,7 @@
           <tr *ngFor="let preg of preguntaArr ; let indice=index" (click)="seleccionarPregunta(preg)"
             [class.table-primary]="preg==preguntaSeleccionada">
             <td>{{indice+1}}</td>
-            <td>{{preg.encuestadimencionid}}</td>
+            <td>{{preg.nombredimencion}}</td>
             <td>{{preg.pregunta}}</td>
             <td><i class="far fa-trash-alt papeleraRoja" (click)="abrirModal(ventanaEliminar,preg)"></i></td>
 

@@ -23,9 +23,9 @@ import { InicioDashUComponent } from './dashboard-user/inicio-dash-u/inicio-dash
 import { RegisterComponent } from './componentes/register/register.component';
 import { EncuestaDimencionComponent } from './componentes/encuesta-dimencion/encuesta-dimencion.component';
 import { PreguntaComponent } from './componentes/pregunta/pregunta.component';
-import { UsuarioRespuestaComponent } from './componentes/usuario-respuesta/usuario-respuesta.component';
 import { EncuestaUserComponent } from './componentes/encuesta-user/encuesta-user.component';
 import { UsuarioEncuestaComponent } from './componentes/usuario-encuesta/usuario-encuesta.component';
+import { RespuestaResultadoComponent } from './componentes/respuesta-resultado/respuesta-resultado.component';
 
 
 
@@ -48,9 +48,9 @@ import { UsuarioEncuestaComponent } from './componentes/usuario-encuesta/usuario
     EncuestaDimencionComponent,
     PreguntaComponent,
    RespuestaComponent,
-   UsuarioRespuestaComponent,
    EncuestaUserComponent,
    UsuarioEncuestaComponent,
+   RespuestaResultadoComponent,
 
   ],
   imports: [

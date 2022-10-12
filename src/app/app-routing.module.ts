@@ -1,6 +1,6 @@
+import { RespuestaResultadoComponent } from './componentes/respuesta-resultado/respuesta-resultado.component';
 import { UsuarioEncuestaComponent } from './componentes/usuario-encuesta/usuario-encuesta.component';
 import { EncuestaUserComponent } from './componentes/encuesta-user/encuesta-user.component';
-import { UsuarioRespuestaComponent } from './componentes/usuario-respuesta/usuario-respuesta.component';
 
 
 import { PreguntaComponent } from './componentes/pregunta/pregunta.component';
@@ -17,7 +17,7 @@ import { ContenedorDashComponent } from './dashboard/contenedor-dash/contenedor-
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RespuestaComponent } from './componentes/respuesta/respuesta.component';
+
 
 const routes: Routes = [
   { path: 'home', component: InicioComponent },
@@ -25,13 +25,15 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {
     path: 'dash', component: ContenedorDashComponent,
-    canActivate:[AuthGuard],
+    canActivate:[AuthGuard],data:{roles:'1'},
     children: [
       { path: 'dashHome', component: InicioDashComponent },
       { path: 'encuestaDim', component: EncuestaDimencionComponent },
       { path: 'preguntas', component: PreguntaComponent },
-      { path: 'respuesta', component: RespuestaComponent },
-      { path: 'usuariorespuesta', component: UsuarioRespuestaComponent },
+      {
+        path: 'resultados', component: RespuestaResultadoComponent,
+        loadChildren: () => import('./graficas/graficas.module').then( m => m.GraficasModule )
+      },
       { path: 'usuarioencuesta', component: UsuarioEncuestaComponent },
 
 
@@ -43,7 +45,7 @@ const routes: Routes = [
 
   {
     path: 'dashUser', component: ContenedorUComponent,
-    canActivate:[AuthGuard],
+    canActivate:[AuthGuard],data:{roles:'2'},
     children:[
       { path: 'dashHomeUser', component: InicioDashUComponent },
       { path: 'encuestaUser', component: EncuestaUserComponent },

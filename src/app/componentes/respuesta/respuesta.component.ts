@@ -13,9 +13,12 @@ import { mostrarMensaje } from 'src/app/utilidades/mensajes.func';
 export class RespuestaComponent implements OnInit {
   public respuestaArr: any = [];
   public preguntaArr: any = [];
+  public usuarioArr: any = [];
+  public EncuestaPreguntaArr: any = [];
   respuesta={
     "preguntaid":0,
-    "respuesta":0
+    "respuesta":0,
+    "usuarioid":0
   };
   public respuestaSeleccionada:Respuesta;
 
@@ -42,6 +45,22 @@ export class RespuestaComponent implements OnInit {
       },
       err => console.log(err)
     )
+    this.taskService.getEncuestaPregunta(this.respuestaSeleccionada.usuarioid)
+    .subscribe(
+      res => {
+        this.EncuestaPreguntaArr = res;
+        console.log(this.EncuestaPreguntaArr)
+      },
+      err => console.log(err)
+    )
+
+    this.taskService.getUsuario()
+    .subscribe(
+      res => {
+        this.usuarioArr = res;
+      },
+      err => console.log(err)
+    )
     this.taskService.getPregunta()
     .subscribe(
       res => {
@@ -53,12 +72,27 @@ export class RespuestaComponent implements OnInit {
   }
 
   public inicializarRespuesta(): Respuesta {
-    return new Respuesta(0, 0, 0);
+    return new Respuesta(0, 0,-1, 0);
   }
 
   public seleccionarRespuesta(objrespuesta: Respuesta): void {
     this.respuestaSeleccionada = objrespuesta;
     console.log(objrespuesta, 'mi objeto');
+    this.taskService.getEncuestaPregunta(this.respuestaSeleccionada.usuarioid)
+    .subscribe(
+      res => {
+        this.EncuestaPreguntaArr = res;
+        console.log(this.EncuestaPreguntaArr)
+      },
+      err => console.log(err)
+    )
+  }
+
+  public capturarPreguntas(): void {
+    this.respuestaSeleccionada.usuarioid= this.respuesta.usuarioid
+    console.log(this.respuesta,'bandera');
+
+
   }
 
   public resetearRespuesta(): void {
@@ -83,6 +117,7 @@ export class RespuestaComponent implements OnInit {
     if (this.datosValidos()) {
       this.respuesta.preguntaid = this.respuestaSeleccionada.preguntaid;
       this.respuesta.respuesta= this.respuestaSeleccionada.respuesta;
+      this.respuesta.usuarioid=this.respuestaSeleccionada.usuarioid
       console.log(this.respuesta,'bandera');
       this.taskService.crearRespuesta(this.respuesta)
       .subscribe(

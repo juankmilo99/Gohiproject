@@ -3,39 +3,58 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private URL='http://localhost:8099'
+  private URL = 'http://localhost:8099'
 
-  constructor(private http: HttpClient, private router:Router ) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  signUpUser(user:any):any {
+  signUpUser(user: any): any {
     let json = JSON.stringify(user);
     let Headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post<any>(this.URL + '/api/public/usuario/login', json,{headers:Headers});
+    return this.http.post<any>(this.URL + '/api/public/usuario/login', json, { headers: Headers });
   }
 
-  registerUser(user:any):any {
+  registerUser(user: any): any {
     let json = JSON.stringify(user);
     let Headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post<any>(this.URL + '/api/public/usuario/crear', json,{headers:Headers});
+    return this.http.post<any>(this.URL + '/api/public/usuario/crear', json, { headers: Headers });
   }
 
-  loggedIn(){
-    return !!localStorage.getItem('token');
+  loggedIn() {
+    return !!localStorage.getItem('token') && localStorage.getItem('codrol');
   }
 
   logOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('nombre');
+    localStorage.removeItem('id');
     localStorage.removeItem('codrol');
     this.router.navigate(['/login']);
   }
 
   getToken() {
     return localStorage.getItem('token');
+  }
+
+  getRol() {
+    return localStorage.getItem('codrol');
+  }
+
+  matchRol(rolPermitido): boolean {
+    let isMatch = false;
+    const userRol: any = this.getRol();
+    console.log(userRol);
+    if (userRol=== rolPermitido) {
+      isMatch= true;
+      return isMatch;
+    }else{
+      return isMatch;
+    }
+
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { decimalDigest } from '@angular/compiler/src/i18n/digest';
-import { stringify } from '@angular/compiler/src/util';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +65,12 @@ export class TaskService {
   getRespuesta() {
     return this.http.get<any>(this.URL + '/api/public/respuesta');
   }
+  getGrafica() {
+    return this.http.get<any>(this.URL + '/api/public/respuesta/grafica');
+  }
+  getValidarRespuesta() {
+    return this.http.get<any>(this.URL + '/api/public/respuesta/validar');
+  }
 
   crearRespuesta(respuesta: any): any {
     let json = JSON.stringify(respuesta);
@@ -123,6 +129,10 @@ export class TaskService {
   deleteUsuarioEncuesta(id: any, cod: any) {
     let endPoints = "/api/public/usuarioEncuesta/" + id + "," + cod;
     return this.http.delete<any>(this.URL + endPoints);
+  }
+  getEncuestaPregunta(id: any) {
+    let endPoints = "/api/public/usuarioEncuesta/optenerPregunta/" + id;
+    return this.http.get<any>(this.URL + endPoints);
   }
 
   updateUsuarioEncuesta(respuesta: any, id: any): any {

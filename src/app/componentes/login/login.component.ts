@@ -25,11 +25,12 @@ export class LoginComponent implements OnInit {
         res => {
           console.log(res);
           localStorage.setItem('codrol', res.codrol);
-          localStorage.setItem('nombre',res.nombre);
+          localStorage.setItem('nombre', res.nombre);
+          localStorage.setItem('id', res.id);
           if (localStorage.getItem('codrol') == "1") {
             localStorage.setItem('token', res.token);
             this.router.navigate(['/dash']);
-          } else{
+          } else {
             localStorage.setItem('token', res.token);
             this.router.navigate(['/dashUser']);
           }
