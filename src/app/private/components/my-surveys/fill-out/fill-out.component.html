@@ -1,0 +1,160 @@
+<div class="container-fluid pt-4 px-4">
+  <nav aria-p="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/dashboard/home"> <i class="fa fa-home me-2"></i>
+          Inicio
+        </a>
+      </li>
+      <li class="breadcrumb-item">
+        <a routerLink="/dashboard/my-surveys">Mis encuestas</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Diligenciar</li>
+    </ol>
+  </nav>
+  <div class="d-flex justify-content-between ps-2 pe-2">
+    <h4 class="mb-3 text-center text-primary">DIligenciar encuesta - nombre encuesta</h4>
+  </div>
+
+  <div class="col-12">
+    <div class="bg-light rounded h-100 p-4">
+      <h5 class="mb-4">Información general</h5>
+      <div class="row mb-3">
+        <div class="col-sm-4">
+          <p type="text"><b>Creado por:</b> Juan Rodruigez</p>
+        </div>
+        <div class="col-sm-4">
+          <p type="text"><b>Fecha inicio:</b> 2022-01-02</p>
+        </div>
+        <div class="col-sm-4">
+          <p type="text"><b>Fecha fin:</b> 2022-01-10</p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <b class="col-sm-2">Nombre encuesta: </b>
+        <div class="col-sm-10">
+          <p type="text" id="surveyName">Encuesta Gohi V2</p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <b>Descipción de la encuesta: </b>
+        <div class="col-sm-12">
+          <p type="text">lorem pis</p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <b class="col-sm-2">Nombre proceso: </b>
+        <div class="col-sm-10">
+          <p type="text" id="processName">Proceso de evaluación año 2022</p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <b>Descipción del proceso: </b>
+        <div class="col-sm-12">
+          <p type="text">lorem pis</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-12 mt-4 mb-2">
+    <div class="bg-light rounded h-100 p-4">
+      <h5 class="mb-4">Preguntas</h5>
+      <div class="accordion accordion-flush" id="accordionDimensiones">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#dimensionOne"
+                    aria-expanded="true" aria-controls="dimensionOne">
+              Dimension 1 - Soporte institucional para el trabajo
+            </button>
+          </h2>
+          <div id="dimensionOne" class="accordion-collapse collapse show"
+               aria-labelledby="flush-headingOne" data-bs-parent="#accordionDimensiones">
+            <div class="accordion-body">
+
+              <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center align-content-center mb-1">
+                  <b class="col-1 text-center">1. </b>
+                  <p class="col m-0 p-0">
+                    Grado de satisfacción que tengo con respecto al trato que recibo de mis superiores
+                  </p>
+                </div>
+                <div class="mt-2 row">
+                  <span class="col-1 text-center"></span>
+                 <div class="col-11">
+                   <div *ngFor="let option of options" class="form-check">
+                     <input class="form-check-input" type="radio" name="question-1" id="question-1-{{option.id}}">
+                     <label class="form-check-label" for="question-1-{{option.id}}">{{option.name}}</label>
+                   </div>
+                 </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center align-content-center mb-1">
+                  <b class="col-1 text-center">2. </b>
+                  <p class="col m-0 p-0">
+                    Considero que tengo libertad para expresar mis opiniones en cuanto al trabajo sin temor a represalias de mis jefes
+                  </p>
+                </div>
+                <div class="mt-2 row">
+                  <span class="col-1 text-center"></span>
+                  <div class="col-11">
+                    <div *ngFor="let option of options" class="form-check">
+                      <input class="form-check-input" type="radio" name="question-2" id="question-2-{{option.id}}">
+                      <label class="form-check-label" for="question-2-{{option.id}}">{{option.name}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#dimensionTwo"
+                    aria-expanded="false" aria-controls="dimensionTwo">
+              Dimension 2 - Seguridad en el trabajo
+            </button>
+          </h2>
+          <div id="dimensionTwo" class="accordion-collapse collapse"
+               aria-labelledby="flush-headingTwo" data-bs-parent="#accordionDimensiones">
+            <div class="accordion-body">
+              Sea diam dolore aliquyam aliquyam diam et consetetur et. Accusam amet no invidunt invidunt et consetetur,
+              magna ut nonumy kasd erat tempor dolor et. Diam magna dolor sed amet duo dolores magna vero. Amet sit
+              sadipscing ea diam clita lorem sit. Vero et et et tempor diam. Ipsum eirmod sit.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#dimensionThree"
+                    aria-expanded="false" aria-controls="dimensionThree">
+              Dimensión 3 - Integración al puesto de trabajo
+            </button>
+          </h2>
+          <div id="dimensionThree" class="accordion-collapse collapse"
+               aria-labelledby="flush-headingThree" data-bs-parent="#accordionDimensiones">
+            <div class="accordion-body">
+              Sea sea sit sanctus magna gubergren kasd, magna justo ea lorem lorem. Elitr aliquyam ipsum clita
+              consetetur duo at nonumy invidunt, invidunt eos dolore vero sit amet amet magna tempor clita, takimata
+              diam justo stet erat et vero erat. Sit ipsum eirmod sea ut vero dolores sea clita nonumy, no.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end mt-4 mb-4">
+    <button class="btn btn-primary">Finalizar encuesta</button>
+  </div>
+
+</div>
+

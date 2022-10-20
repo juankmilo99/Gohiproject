@@ -1,0 +1,67 @@
+<div class="container-fluid pt-4 px-4">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/dashboard/home"> <i class="fa fa-home me-2"></i>
+          Inicio
+        </a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Encuestas</li>
+    </ol>
+  </nav>
+  <div class="d-flex justify-content-between ps-2 pe-2">
+    <h4 class="mb-3 text-center text-primary">Encuestas GOHI</h4>
+    <a routerLink="/dashboard/surveys/create" class="btn btn-primary mb-2 text-end">Crear nueva versión</a>
+  </div>
+  <div class="row g-4">
+    <div class="col-12">
+      <div class="bg-light rounded h-100 p-4">
+
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">Versión</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Encuesta V1</td>
+              <td><span class="badge bg-primary">Activo</span></td>
+              <td>
+                <a class="text-primary me-2 cursor-pointer"><i class="fa fa-eye"></i></a>
+                <a class="text-info me-2 cursor-pointer"><i class="fa fa-edit"></i></a>
+                <a class="text-danger me-2 cursor-pointer"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Encuesta V2</td>
+              <td><span class="badge bg-primary">Activo</span></td>
+              <td>
+                <a class="text-primary me-2 cursor-pointer"><i class="fa fa-eye"></i></a>
+                <a class="text-info me-2 cursor-pointer"><i class="fa fa-edit"></i></a>
+                <a class="text-danger me-2 cursor-pointer"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Encuesta V3</td>
+              <td><span class="badge bg-secondary">Inactiva</span></td>
+              <td>
+                <a class="text-primary me-2"><i class="fa fa-eye"></i></a>
+                <a class="text-info me-2"><i class="fa fa-edit"></i></a>
+                <a class="text-danger me-2"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
