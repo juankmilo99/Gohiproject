@@ -1,16 +1,19 @@
 export class Pregunta {
 
-  public preguntaid: number;
-  public encuestadimencionid: number;
+  public codigo: number;
+  public codigo_encuesta: number;
+  public codigo_dimension: number;
   public pregunta: string;
 
   constructor(
     cod: number,
     id: number,
+    cot: number,
     doc: string,
   ) {
-    this.preguntaid = id;
-    this.encuestadimencionid = cod;
+    this.codigo = id;
+    this.codigo_encuesta = cod;
+    this.codigo_dimension=cot;
     this.pregunta = doc;
   }
 

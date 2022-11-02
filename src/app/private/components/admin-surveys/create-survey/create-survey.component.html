@@ -23,102 +23,95 @@
         <div class="row mb-3">
           <label for="inputName" class="col-sm-2 col-form-label">Nombre encuesta: </label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputName">
+            <input type="text" class="form-control" name="nombre" id="inputName"
+              [(ngModel)]="encuestaSeleccionada.nombre">
           </div>
         </div>
         <div class="row mb-3">
           <label for="inputDescription" class="col-sm-2 col-form-label">Descripción: </label>
           <div class="col-sm-10">
-            <textarea rows="5" class="form-control" id="inputDescription"></textarea>
+            <textarea rows="5" class="form-control" name="descricpcion" id="inputDescription"
+              [(ngModel)]="encuestaSeleccionada.descricpcion"></textarea>
           </div>
         </div>
       </form>
     </div>
   </div>
 
-  <div class="col-12 mt-4 mb-2">
-    <div class="bg-light rounded h-100 p-4">
-      <h5 class="mb-4">Dimensiones</h5>
-      <div class="accordion accordion-flush" id="accordionDimensiones">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#dimensionOne"
-                    aria-expanded="true" aria-controls="dimensionOne">
-              Dimension 1 - Soporte institucional para el trabajo
-            </button>
-          </h2>
-          <div id="dimensionOne" class="accordion-collapse collapse show"
-               aria-labelledby="flush-headingOne" data-bs-parent="#accordionDimensiones">
-            <div class="accordion-body">
-              <div class="d-flex justify-content-between align-items-center align-content-center mb-1">
-                <b class="col-1 text-center">1. </b>
-                <input class="col form-control"
-                       value="Grado de satisfacción que tengo con respecto al trato que recibo de mis superiores"/>
-                <a class="text-primary ms-2"><i class="fa fa-check"></i></a>
-                <a class="text-info ms-2" *ngIf="false"><i class="fa fa-edit"></i></a>
-                <a class="text-danger ms-2"><i class="fa fa-trash"></i></a>
-              </div>
+  <div *ngIf="newEncuesta.length === 0; then crearEncuestas; else acordionDimensiones"></div>
 
-              <div class="d-flex justify-content-between align-items-center align-content-center mb-1">
-                <b class="col-1 text-center">2. </b>
-                <p class="col m-0 p-0">
-                  Considero que tengo libertad para expresar mis opiniones para expresar mis opiniones en cuanto al
-                  trabajo sin temor a represalias de mis jefes
-                </p>
-                <input class="col form-control" *ngIf="false"
-                       value="Considero que tengo libertad para expresar mis opiniones para expresar mis opiniones en cuanto al trabajo sin temor a represalias de mis jefes"/>
-                <a class="text-info ms-2"><i class="fa fa-edit"></i></a>
-                <a class="text-danger ms-2"><i class="fa fa-trash"></i></a>
-              </div>
+  <ng-template #acordionDimensiones>
+    <div class="col-12 mt-4 mb-2">
+      <div class="bg-light rounded h-100 p-4">
+        <h5 class="mb-4">Dimensiones</h5>
+        <div class="accordion accordion-flush" id="accordionDimensiones">
+          <div *ngFor="let dim of dimensionesArr; let indice=index" class="accordion-item">
+            <h2 class="accordion-header" [attr.id]="'flush-heading'+dim.codigo">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#dimension'+dim.codigo" aria-expanded="true"
+                [attr.aria-controls]="'dimension'+dim.codigo">
+                {{dim.codigo}} - {{dim.nombre}}
+              </button>
+            </h2>
+
+            <div *ngIf="dim.codigo>1; then acordionCollapse; else acordionShow"></div>
+
+            <ng-template #acordionShow>
+              <div [attr.id]="'dimension'+dim.codigo" class="accordion-collapse collapse show"
+                [attr.aria-labelledby]="'flush-heading'+dim.codigo" data-bs-parent="#accordionDimensiones">
+                <div class="accordion-body">
+                  <div class="d-flex justify-content-between align-items-center align-content-center mb-1">
+                    <b class="col-1 text-center">1. </b>
+                    <input class="col form-control" name="pregunta" id="inputPreg"
+                      [(ngModel)]="preguntaSeleccionada.pregunta" />
+                    <a class="text-primary ms-2"><i class="fa fa-check"></i></a>
+                    <a class="text-info ms-2" *ngIf="false"><i class="fa fa-edit"></i></a>
+                    <a class="text-danger ms-2"><i class="fa fa-trash"></i></a>
+                  </div>
 
 
-              <div class="d-flex justify-content-end mt-2">
-                <button class="btn btn-primary text-end">Nueva pregunta</button>
+                  <div class="d-flex justify-content-end mt-2">
+                    <button class="btn btn-primary text-end" (click)="agregarPregunta(dim.codigo)">Nueva pregunta</button>
+                  </div>
+                </div>
               </div>
-            </div>
+            </ng-template>
+
+            <ng-template #acordionCollapse>
+              <div [attr.id]="'dimension'+dim.codigo" class="accordion-collapse collapse "
+                [attr.aria-labelledby]="'flush-heading'+dim.codigo" data-bs-parent="#accordionDimensiones">
+                <div class="accordion-body">
+                  <div class="d-flex justify-content-between align-items-center align-content-center mb-1">
+                    <b class="col-1 text-center">1. </b>
+                    <input class="col form-control" name="pregunta" id="inputPreg"
+                      [(ngModel)]="preguntaSeleccionada.pregunta" />
+                    <a class="text-primary ms-2"><i class="fa fa-check"></i></a>
+                    <a class="text-info ms-2" *ngIf="false"><i class="fa fa-edit"></i></a>
+                    <a class="text-danger ms-2"><i class="fa fa-trash"></i></a>
+                  </div>
+
+
+                  <div class="d-flex justify-content-end mt-2">
+                    <button class="btn btn-primary text-end" (click)="agregarPregunta(dim.codigo)">Nueva pregunta</button>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+
+
           </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingTwo">
-            <button class="accordion-button collapsed" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#dimensionTwo"
-                    aria-expanded="false" aria-controls="dimensionTwo">
-              Dimension 2 - Seguridad en el trabajo
-            </button>
-          </h2>
-          <div id="dimensionTwo" class="accordion-collapse collapse"
-               aria-labelledby="flush-headingTwo" data-bs-parent="#accordionDimensiones">
-            <div class="accordion-body">
-              Sea diam dolore aliquyam aliquyam diam et consetetur et. Accusam amet no invidunt invidunt et consetetur,
-              magna ut nonumy kasd erat tempor dolor et. Diam magna dolor sed amet duo dolores magna vero. Amet sit
-              sadipscing ea diam clita lorem sit. Vero et et et tempor diam. Ipsum eirmod sit.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingThree">
-            <button class="accordion-button collapsed" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#dimensionThree"
-                    aria-expanded="false" aria-controls="dimensionThree">
-              Dimensión 3 - Integración al puesto de trabajo
-            </button>
-          </h2>
-          <div id="dimensionThree" class="accordion-collapse collapse"
-               aria-labelledby="flush-headingThree" data-bs-parent="#accordionDimensiones">
-            <div class="accordion-body">
-              Sea sea sit sanctus magna gubergren kasd, magna justo ea lorem lorem. Elitr aliquyam ipsum clita
-              consetetur duo at nonumy invidunt, invidunt eos dolore vero sit amet amet magna tempor clita, takimata
-              diam justo stet erat et vero erat. Sit ipsum eirmod sea ut vero dolores sea clita nonumy, no.
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
-  </div>
+  </ng-template>
 
-  <div class="d-flex justify-content-end mt-4 mb-4">
-    <button class="btn btn-primary">Crear encuesta</button>
-  </div>
+  <ng-template #crearEncuestas>
+    <div class="d-flex justify-content-end mt-4 mb-4">
+      <button class="btn btn-primary" (click)="agregarEncuesta()">Crear encuesta</button>
+    </div>
+  </ng-template>
+
+
 
 </div>

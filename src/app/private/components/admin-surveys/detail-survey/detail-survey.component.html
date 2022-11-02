@@ -1,1 +1,61 @@
-<p>detail-survey works!</p>
+<div class="container-fluid pt-4 px-4">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/dashboard/home"> <i class="fa fa-home me-2"></i>
+          Inicio
+        </a>
+      </li>
+      <li class="breadcrumb-item">
+        <a routerLink="/dashboard/surveys">Encuestas</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Editar</li>
+    </ol>
+  </nav>
+
+    <div class="col-12 mt-4 mb-2">
+      <div class="bg-light rounded h-100 p-4">
+        <h5 class="mb-4">Dimensiones</h5>
+        <div class="accordion accordion-flush" id="accordionDimensiones">
+          <div *ngFor="let dim of dimensionesArr; let indice=index" class="accordion-item">
+            <h2 class="accordion-header" [attr.id]="'flush'+dim.codigo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" (click)="optenerPreguntaDimension(dim.codigo)"
+                [attr.data-bs-target]="'#dimension'+dim.codigo" aria-expanded="true"
+                [attr.aria-controls]="'dimension'+dim.codigo">
+                {{dim.codigo}} - {{dim.nombre}}
+              </button>
+            </h2>
+
+              <div [attr.id]="'dimension'+dim.codigo" class="accordion-collapse collapse"
+                [attr.aria-labelledby]="'flush'+dim.codigo" data-bs-parent="#accordionDimensiones">
+                <div class="accordion-body">
+                  <div class="d-flex justify-content-between align-items-center align-content-center mb-1">
+                    <input class="col form-control" name="pregunta" id="inputPreg"
+                      [(ngModel)]="preguntaSeleccionada.pregunta" />
+                    <a class="text-primary ms-2" (click)="agregarPreguntaArr()"><i class="fa fa-check"></i></a>
+                    <a class="text-info ms-2" *ngIf="false"><i class="fa fa-edit"></i></a>
+                    <a class="text-danger ms-2"><i class="fa fa-trash"></i></a>
+                  </div>
+
+                  <div *ngFor="let preg of preguntasArr; let indice=index;"  class="d-flex justify-content-between align-items-center align-content-center mb-1">
+                    <b class="col-1 text-center">{{indice+1}} </b>
+                    <p class="col m-0 p-0">
+                      {{preg.pregunta}}
+                    </p>
+
+                  </div>
+
+
+                  <div class="d-flex justify-content-end mt-2">
+                    <button class="btn btn-primary text-end" (click)="agregarPregunta(dim.codigo)">Nueva pregunta</button>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+</div>

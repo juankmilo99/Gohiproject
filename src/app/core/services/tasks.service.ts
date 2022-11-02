@@ -11,13 +11,13 @@ export class TaskService {
   private URL = 'http://localhost:8099';
   constructor(private http: HttpClient) { }
 
-  getEncuestaDimencion() {
-    return this.http.get<any>(this.URL + '/api/public/encuestaDimencion');
+  getEncuestas() {
+    return this.http.get<any>(this.URL + '/api/public/encuestas');
   }
-  crearEncuestaDimencion(encuestaDim: any): any {
-    let json = JSON.stringify(encuestaDim);
+  crearEncuesta(encuesta: any): any {
+    let json = JSON.stringify(encuesta);
     let Headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post<any>(this.URL + '/api/public/encuestaDimencion/crear', json, { headers: Headers });
+    return this.http.post<any>(this.URL + '/api/public/encuestas/crear', json, { headers: Headers });
   }
 
   deleteEncuestaDimencion(id: any) {
@@ -25,11 +25,31 @@ export class TaskService {
     return this.http.delete<any>(this.URL + endPoints);
   }
 
-  updateEncuestaDimencion(encuestaDim: any, id: any): any {
-    let json = JSON.stringify(encuestaDim);
-    let endPoints = "/api/public/encuestaDimencion/actualizar/" + id;
+  optenerPreguntaDimension(encuesta: any, id: any): any {
+    let json = JSON.stringify(encuesta);
+    let endPoints = "/api/public/encuestas/info/" + id;
+    let Headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<any>(this.URL + endPoints, json, { headers: Headers });
+  }
+
+  actualizarEstadoEncuesta(encuesta: any, id: any): any {
+    let json = JSON.stringify(encuesta);
+    let endPoints = "/api/public/encuestas/actualizar/" + id;
     let Headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.put<any>(this.URL + endPoints, json, { headers: Headers });
+  }
+  //*********************************************************************************************************************
+  getDimensiones() {
+    return this.http.get<any>(this.URL + '/api/public/dimensiones');
+  }
+  //*********************************************************************************************************************
+  getProcesos() {
+    return this.http.get<any>(this.URL + '/api/public/procesos');
+  }
+  crearProcesos(proceso: any): any {
+    let json = JSON.stringify(proceso);
+    let Headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<any>(this.URL + '/api/public/procesos/crear', json, { headers: Headers });
   }
   //*********************************************************************************************************************
 

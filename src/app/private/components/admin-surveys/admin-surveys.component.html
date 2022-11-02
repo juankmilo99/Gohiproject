@@ -20,48 +20,56 @@
         <div class="table-responsive">
           <table class="table">
             <thead>
-            <tr>
-              <th scope="col">Versión</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Acciones</th>
-            </tr>
+              <tr>
+                <th scope="col">Versión</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
             </thead>
             <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Encuesta V1</td>
-              <td><span class="badge bg-primary">Activo</span></td>
-              <td>
-                <a class="text-primary me-2 cursor-pointer"><i class="fa fa-eye"></i></a>
-                <a class="text-info me-2 cursor-pointer"><i class="fa fa-edit"></i></a>
-                <a class="text-danger me-2 cursor-pointer"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Encuesta V2</td>
-              <td><span class="badge bg-primary">Activo</span></td>
-              <td>
-                <a class="text-primary me-2 cursor-pointer"><i class="fa fa-eye"></i></a>
-                <a class="text-info me-2 cursor-pointer"><i class="fa fa-edit"></i></a>
-                <a class="text-danger me-2 cursor-pointer"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Encuesta V3</td>
-              <td><span class="badge bg-secondary">Inactiva</span></td>
-              <td>
-                <a class="text-primary me-2"><i class="fa fa-eye"></i></a>
-                <a class="text-info me-2"><i class="fa fa-edit"></i></a>
-                <a class="text-danger me-2"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr>
+              <tr *ngFor="let encu of encuestasArr ; let indice=index;">
+                <td>{{indice+1}}</td>
+                <td>{{encu.nombre}}</td>
+                <td *ngIf="encu.activo==true; else botonInactivo"><span class="badge bg-primary">Activa</span></td>
+                <td>
+                  <a class="text-primary me-2 cursor-pointer"(click)="abrirEncuestaPregunta(encu.codigo)"><i class="fa fa-eye"></i></a>
+                  <a class="text-info me-2 cursor-pointer"  (click)="abrirModal(ventanaCambiarEstado,encu)" ><i class="fa fa-edit"></i></a>
+                  <a class="text-danger me-2 cursor-pointer"><i class="fa fa-trash"></i></a>
+                </td>
+              </tr>
+
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
+  <ng-template #botonInactivo >
+    <td><span class="badge bg-secondary">Inactiva</span></td>
+  </ng-template>
+  <ng-template #ventanaCambiarEstado>
+    <div class="modal-header bg-dark text-white" style="padding: 4px">
+      <h5 class="modal-title">
+        {{ modalTitulo }}
+      </h5>
+      <button type="button" class="btn btn-sm text-white" (click)="modalRef.hide()">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>
+        {{ modalCuerpo }} <br />
+        <strong>{{ modalContenido }}</strong>
+      </p>
+    </div>
+    <div class="modal-footer" style="padding: 4px">
+      <button type="button" class="btn btn-danger btn-sm" (click)="btnActualizarEstadoEncuesta()">
+        actualizar
+      </button>
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="btnCancelar()">
+        Cancelar
+      </button>
+    </div>
+  </ng-template>
 </div>

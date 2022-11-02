@@ -19,8 +19,63 @@
   <div class="row g-4">
     <div class="col-12">
       <div class="bg-light rounded h-100 p-4">
+        <h5 class="mb-4">Información general</h5>
+        <form>
+
+          <div class="row mb-3">
+            <label for="inputName" class="col-sm-2 col-form-label">Nombre proceso: </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="nombre" id="inputName"
+                [(ngModel)]="procesoSeleccionado.nombre">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="inputDescription" class="col-sm-2 col-form-label">Descripción: </label>
+            <div class="col-sm-10">
+              <textarea rows="5" class="form-control" name="descricpcion" id="inputDescription"
+                [(ngModel)]="procesoSeleccionado.descripcion"></textarea>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="selectEncuesta" class="col-sm-2 col-form-label">Encuesta: </label>
+            <div class="col-sm-10">
+              <select class="form-select col-sm-10" id="selectEncuesta" name="selectEncuesta"
+              [(ngModel)]="procesoSeleccionado.codigo_encuesta">
+              <option *ngFor="let encu of encuestasArr;" [ngValue]="encu.codigo" [disabled]="encu.codigo==0" >
+                {{encu.nombre}}
+              </option>
+            </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="inputfechaInicio" class="col-sm-2 col-form-label">Fecha inicio: </label>
+            <div class="col-sm-10">
+              <input type="datetime-local" class="form-control" name="inputfechaInicio" id="inputfechaInicio"
+                [(ngModel)]="procesoSeleccionado.fecha_inicio">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="inputfechaFin" class="col-sm-2 col-form-label">Fecha fin: </label>
+            <div class="col-sm-10">
+              <input type="datetime-local" class="form-control" name="inputfechaFin" id="inputfechaFin"
+                [(ngModel)]="procesoSeleccionado.fecha_fin">
+            </div>
+          </div>
+        </form>
 
       </div>
     </div>
   </div>
+  <div *ngIf="newProceso.length === 0; then crearProcesos;"></div>
+
+  <ng-template #crearProcesos>
+    <div class="d-flex justify-content-end mt-4 mb-4">
+      <button class="btn btn-primary" (click)="agregarProceso()">Crear Proceso</button>
+    </div>
+  </ng-template>
+
 </div>

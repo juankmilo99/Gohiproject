@@ -17,6 +17,11 @@ import { MySurveysComponent } from './components/my-surveys/my-surveys.component
 import { FillOutComponent } from './components/my-surveys/fill-out/fill-out.component';
 import { CreateProcessComponent } from './components/admin-processes/create-process/create-process.component';
 import { StatisticsProcessComponent } from './components/admin-processes/statistics-process/statistics-process.component';
+import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ToastrModule } from 'ngx-toastr';
+
+
 
 
 @NgModule({
@@ -35,11 +40,17 @@ import { StatisticsProcessComponent } from './components/admin-processes/statist
     FillOutComponent,
     CreateProcessComponent,
     StatisticsProcessComponent
+
   ],
   imports: [
     CommonModule,
     PrivateRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ModalModule.forRoot(),
+
+
+
   ]
 })
 export class PrivateModule { }

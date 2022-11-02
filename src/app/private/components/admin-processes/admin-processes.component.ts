@@ -1,3 +1,4 @@
+import { TaskService } from './../../../core/services/tasks.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-processes.component.css']
 })
 export class AdminProcessesComponent implements OnInit {
+  public procesosArr: any = [];
 
-  constructor() { }
+  constructor(private taskService:TaskService) { }
 
   ngOnInit(): void {
+    this.taskService.getProcesos()
+      .subscribe(
+        res => {
+          this.procesosArr = res;
+          console.log(this.procesosArr)
+        },
+        err => console.log(err)
+      )
   }
 
 }
