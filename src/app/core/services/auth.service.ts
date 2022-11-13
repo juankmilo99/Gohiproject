@@ -16,7 +16,7 @@ export class AuthService {
   signUpUser(user: any): any {
     let json = JSON.stringify(user);
     let Headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post<any>(this.URL + '/api/public/usuario/login', json, { headers: Headers });
+    return this.http.post<any>(this.URL + '/api/public/usuarios/login', json, { headers: Headers });
   }
 
   registerUser(user: any): any {
@@ -26,15 +26,12 @@ export class AuthService {
   }
 
   loggedIn() {
-    return !!localStorage.getItem('token') && localStorage.getItem('codrol');
+    return !!localStorage.getItem('token') ;
   }
 
   logOut() {
     localStorage.removeItem('token');
-    localStorage.removeItem('nombre');
-    localStorage.removeItem('id');
-    localStorage.removeItem('codrol');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/public']);
   }
 
   getToken() {

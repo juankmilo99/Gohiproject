@@ -63,91 +63,46 @@
     <div class="bg-light rounded h-100 p-4">
       <h5 class="mb-4">Preguntas</h5>
       <div class="accordion accordion-flush" id="accordionDimensiones">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#dimensionOne"
-                    aria-expanded="true" aria-controls="dimensionOne">
-              Dimension 1 - Soporte institucional para el trabajo
+        <div *ngFor="let dim of dimensionesArr; let indice=index" class="accordion-item">
+          <h2 class="accordion-header" [attr.id]="'flush'+dim.codigo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" (click)="optenerPreguntaDimensionUuid(dim.codigo)"
+              [attr.data-bs-target]="'#dimension'+dim.codigo" aria-expanded="true"
+              [attr.aria-controls]="'dimension'+dim.codigo">
+              {{dim.codigo}} - {{dim.nombre}}
             </button>
           </h2>
-          <div id="dimensionOne" class="accordion-collapse collapse show"
-               aria-labelledby="flush-headingOne" data-bs-parent="#accordionDimensiones">
+          <div [attr.id]="'dimension'+dim.codigo" class="accordion-collapse collapse " [attr.aria-labelledby]="'flush'+dim.codigo"
+            data-bs-parent="#accordionDimensiones">
             <div class="accordion-body">
 
-              <div class="mb-3">
+              <div *ngFor="let preg of encuPreguntasArr; let indice=index;" class="mb-3">
                 <div class="d-flex justify-content-between align-items-center align-content-center mb-1">
-                  <b class="col-1 text-center">1. </b>
+                  <b class="col-1 text-center">{{indice+1}} . </b>
                   <p class="col m-0 p-0">
-                    Grado de satisfacción que tengo con respecto al trato que recibo de mis superiores
-                  </p>
-                </div>
-                <div class="mt-2 row">
-                  <span class="col-1 text-center"></span>
-                 <div class="col-11">
-                   <div *ngFor="let option of options" class="form-check">
-                     <input class="form-check-input" type="radio" name="question-1" id="question-1-{{option.id}}">
-                     <label class="form-check-label" for="question-1-{{option.id}}">{{option.name}}</label>
-                   </div>
-                 </div>
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <div class="d-flex justify-content-between align-items-center align-content-center mb-1">
-                  <b class="col-1 text-center">2. </b>
-                  <p class="col m-0 p-0">
-                    Considero que tengo libertad para expresar mis opiniones en cuanto al trabajo sin temor a represalias de mis jefes
+                    {{preg.pregunta}}
                   </p>
                 </div>
                 <div class="mt-2 row">
                   <span class="col-1 text-center"></span>
                   <div class="col-11">
-                    <div *ngFor="let option of options" class="form-check">
-                      <input class="form-check-input" type="radio" name="question-2" id="question-2-{{option.id}}">
-                      <label class="form-check-label" for="question-2-{{option.id}}">{{option.name}}</label>
+                    <div *ngFor="let option of options" [ngClass]="'form-check'">
+                      <input class="form-check-input" type="radio" [attr.name]="'opcion'+preg.codigo_pregunta" [attr.id]="'opcion'+preg.codigo_pregunta">
+                      <label class="form-check-label" [attr.for]="'opcion'+preg.codigo_pregunta">{{option.name}}</label>
                     </div>
                   </div>
                 </div>
               </div>
 
+              <div class="d-flex justify-content-end mt-2">
+                <button class="btn btn-primary text-end">Agregar respuestas</button>
+              </div>
+
+
             </div>
           </div>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingTwo">
-            <button class="accordion-button collapsed" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#dimensionTwo"
-                    aria-expanded="false" aria-controls="dimensionTwo">
-              Dimension 2 - Seguridad en el trabajo
-            </button>
-          </h2>
-          <div id="dimensionTwo" class="accordion-collapse collapse"
-               aria-labelledby="flush-headingTwo" data-bs-parent="#accordionDimensiones">
-            <div class="accordion-body">
-              Sea diam dolore aliquyam aliquyam diam et consetetur et. Accusam amet no invidunt invidunt et consetetur,
-              magna ut nonumy kasd erat tempor dolor et. Diam magna dolor sed amet duo dolores magna vero. Amet sit
-              sadipscing ea diam clita lorem sit. Vero et et et tempor diam. Ipsum eirmod sit.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingThree">
-            <button class="accordion-button collapsed" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#dimensionThree"
-                    aria-expanded="false" aria-controls="dimensionThree">
-              Dimensión 3 - Integración al puesto de trabajo
-            </button>
-          </h2>
-          <div id="dimensionThree" class="accordion-collapse collapse"
-               aria-labelledby="flush-headingThree" data-bs-parent="#accordionDimensiones">
-            <div class="accordion-body">
-              Sea sea sit sanctus magna gubergren kasd, magna justo ea lorem lorem. Elitr aliquyam ipsum clita
-              consetetur duo at nonumy invidunt, invidunt eos dolore vero sit amet amet magna tempor clita, takimata
-              diam justo stet erat et vero erat. Sit ipsum eirmod sea ut vero dolores sea clita nonumy, no.
-            </div>
-          </div>
-        </div>
+
+
       </div>
     </div>
   </div>
@@ -157,4 +112,3 @@
   </div>
 
 </div>
-

@@ -1,6 +1,15 @@
 <div class="container-xxl position-relative bg-white d-flex p-0">
 
-  <app-sidebar [showSidebar]="showSidebar"></app-sidebar>
+  <div *ngIf="tokenDecoded.user[0].codigo==1; then sidebarAdmin; else sidebarUser;"></div>
+
+  <ng-template #sidebarAdmin>
+    <app-sidebar [showSidebar]="showSidebar"></app-sidebar>
+  </ng-template>
+
+  <ng-template #sidebarUser>
+    <app-sidebar-user [showSidebar]="showSidebar"></app-sidebar-user>
+  </ng-template>
+
 
   <div class="content" [ngClass]="showSidebar? '' : 'open'">
     <app-navbar (clickHamburger)="toggleSidebar()"></app-navbar>

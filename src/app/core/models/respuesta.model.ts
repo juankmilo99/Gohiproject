@@ -1,9 +1,9 @@
 export class Respuesta {
 
   public respuestaid: number;
-  public preguntaid: number;
-  public respuesta: number;
-  public usuarioid: number;
+  public codigo_pregunta: number;
+  public codigo_usuario_proceso: number;
+  public codigo_opcion: number;
 
   constructor(
     cod: number,
@@ -12,9 +12,9 @@ export class Respuesta {
     usu: number,
   ) {
     this.respuestaid = id;
-    this.preguntaid = cod;
-    this.respuesta = doc;
-    this.usuarioid = usu;
+    this.codigo_pregunta = cod;
+    this.codigo_usuario_proceso = doc;
+    this.codigo_opcion = usu;
   }
 
 }

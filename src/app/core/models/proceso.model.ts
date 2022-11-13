@@ -8,6 +8,7 @@ export class Proceso {
   public fecha_inicio: string;
   public fecha_fin: string;
   public estado: number;
+  public correo: string;
 
   constructor(
     cod: number,
@@ -16,6 +17,7 @@ export class Proceso {
     nom: string,
     ape: number,
     tel: string,
+    tol: string,
     nomFot: string,
     fot: string
   ) {
@@ -27,6 +29,7 @@ export class Proceso {
     this.fecha_inicio = nomFot;
     this.fecha_fin = fot;
     this.estado = dot;
+    this.correo= tol;
   }
 
 }

@@ -10,10 +10,10 @@
     <div class="nav-item dropdown">
       <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
         <img class="rounded-circle me-lg-2" src="assets/img/user.png" alt="" style="width: 40px; height: 40px;">
-        <span class="d-none d-lg-inline-flex">Juan Camilo</span>
+        <span class="d-none d-lg-inline-flex">{{ nombreUser }}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-        <button href="#" class="dropdown-item">Cerrar sesión</button>
+        <button class="dropdown-item" (click)="authService.logOut()">Cerrar sesión</button>
       </div>
     </div>
   </div>

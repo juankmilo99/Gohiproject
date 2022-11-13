@@ -52,7 +52,7 @@ export class AdminSurveysComponent implements OnInit {
   public abrirEncuestaPregunta(codEncuesta:any): void {
     console.log(codEncuesta)
     localStorage.setItem('codEncuesta', codEncuesta);
-    this.router.navigate(['/dashboard/surveys/detail/'+ codEncuesta]);
+    this.router.navigate(['/dash/surveys/detail/'+ codEncuesta]);
   }
 
   public actualizarEstadoEncuesta(): void {

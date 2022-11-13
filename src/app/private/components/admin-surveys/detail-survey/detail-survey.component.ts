@@ -58,22 +58,21 @@ export class DetailSurveyComponent implements OnInit {
   //***********LOGICA DE NEGOCIO************************************************
 
   public agregarPregunta(codDimension: number): void {
-    if (this.datosValidosPreg()) {
-      this.pregunta.codigo_encuesta = localStorage.getItem('codEncuesta');
-      this.pregunta.codigo_dimension = codDimension;
-      this.pregunta.pregunta = this.preguntaSeleccionada.pregunta
-      console.log(this.pregunta, 'bandera2');
-      this.taskService.crearPregunta(this.pregunta)
-        .subscribe(
-          res => {
-            console.log(res)
-          },
-          err => console.log(err)
-        )
-      this.resetearPregunta();
-    } else {
-      console.log('paila');
-    }
+    const requestArr = this.preguntasArr.filter(preg => preg.estado == 0);
+    requestArr.forEach(element => {
+      element.codigo_encuesta = localStorage.getItem('codEncuesta');
+      element.codigo_dimension = codDimension;
+    });
+    console.log(requestArr);
+    this.taskService.crearPregunta(requestArr)
+    .subscribe(
+      res => {
+        console.log(res)
+      },
+      err => console.log(err)
+    )
+    this.resetearPregunta();
+
   }
 
   public optenerPreguntaDimension(codDimension: number): void {
@@ -83,7 +82,7 @@ export class DetailSurveyComponent implements OnInit {
       .subscribe(
         res => {
           this.preguntasArr = res;
-          this.preguntasArr.array.forEach(preg => {
+          this.preguntasArr.forEach(preg => {
             preg.estado = 1;
 
           });
@@ -96,8 +95,12 @@ export class DetailSurveyComponent implements OnInit {
   }
 
   public agregarPreguntaArr(): void {
-    this.preguntasArr.push({ pregunta:this.preguntaSeleccionada.pregunta, estado:0 });
-    this.preguntaSeleccionada.pregunta='';
+    if (this.datosValidosPreg()) {
+      this.preguntasArr.push({ pregunta: this.preguntaSeleccionada.pregunta, estado: 0 });
+      this.preguntaSeleccionada.pregunta = '';
+    } else {
+      console.log('paila');
+    }
 
 
   }

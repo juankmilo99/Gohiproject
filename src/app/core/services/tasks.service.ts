@@ -25,9 +25,21 @@ export class TaskService {
     return this.http.delete<any>(this.URL + endPoints);
   }
 
+  optenerEncuestaUuid(id: any) {
+    let endPoints = "/api/public/encuestas/uuid/" + id;
+    return this.http.get<any>(this.URL + endPoints);
+  }
+
   optenerPreguntaDimension(encuesta: any, id: any): any {
     let json = JSON.stringify(encuesta);
     let endPoints = "/api/public/encuestas/info/" + id;
+    let Headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<any>(this.URL + endPoints, json, { headers: Headers });
+  }
+
+  optenerPreguntaDimensionUuid(encuesta: any, id: any): any {
+    let json = JSON.stringify(encuesta);
+    let endPoints = "/api/public/encuestas/uuid/" + id;
     let Headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post<any>(this.URL + endPoints, json, { headers: Headers });
   }
@@ -51,6 +63,14 @@ export class TaskService {
     let Headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post<any>(this.URL + '/api/public/procesos/crear', json, { headers: Headers });
   }
+
+  crearCorreos(correo: any, id: any): any {
+    let json = JSON.stringify(correo);
+    let endPoints = "/api/public/procesos/correos/" + id;
+    let Headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<any>(this.URL + endPoints, json, { headers: Headers });
+  }
+
   //*********************************************************************************************************************
 
   getPregunta() {

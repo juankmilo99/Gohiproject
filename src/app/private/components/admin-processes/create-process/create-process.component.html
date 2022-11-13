@@ -2,12 +2,12 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a routerLink="/dashboard/home"> <i class="fa fa-home me-2"></i>
+        <a routerLink="/dash/home"> <i class="fa fa-home me-2"></i>
           Inicio
         </a>
       </li>
       <li class="breadcrumb-item">
-        <a routerLink="/dashboard/processes">Procesos </a>
+        <a routerLink="/dash/processes">Procesos </a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">Crear</li>
     </ol>
@@ -70,11 +70,67 @@
       </div>
     </div>
   </div>
-  <div *ngIf="newProceso.length === 0; then crearProcesos;"></div>
+  <div *ngIf="newProceso.length === 0; then crearProcesos; else acordionCorreos;"></div>
 
   <ng-template #crearProcesos>
     <div class="d-flex justify-content-end mt-4 mb-4">
       <button class="btn btn-primary" (click)="agregarProceso()">Crear Proceso</button>
+    </div>
+  </ng-template>
+
+  <ng-template  #acordionCorreos>
+    <div class="col-12 mt-4 mb-2">
+      <div class="bg-light rounded h-100 p-4">
+        <h5 class="mb-4">Crear correos</h5>
+        <div class="accordion accordion-flush" id="accordionDimensiones">
+          <div class="accordion-item">
+            <h2 class="accordion-header" [attr.id]="'flush'+1">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#dimension'+1" aria-expanded="true"
+                [attr.aria-controls]="'dimension'+1">
+                Mis Correos
+              </button>
+            </h2>
+
+              <div [attr.id]="'dimension'+1" class="accordion-collapse show"
+                [attr.aria-labelledby]="'flush'+1" data-bs-parent="#accordionDimensiones">
+                <div class="accordion-body">
+                  <div class="d-flex justify-content-between align-items-center align-content-center mb-1">
+                    <input class="col form-control" name="correo" id="inputCorreo"
+                      [(ngModel)]="procesoSeleccionado.correo" />
+                    <a class="text-primary ms-2" (click)="agregarCorreosArr()"><i class="fa fa-check"></i></a>
+                    <a class="text-info ms-2" *ngIf="false"><i class="fa fa-edit"></i></a>
+                    <a class="text-danger ms-2"><i class="fa fa-trash"></i></a>
+                  </div>
+
+                  <div *ngFor="let cor of correosArr; let indice=index;"  class="d-flex justify-content-between align-items-center align-content-center mb-1">
+                    <b class="col-1 text-center">{{indice+1}} </b>
+                    <p class="col m-0 p-0">
+                      {{cor.correo}}
+                    </p>
+
+                  </div>
+
+                  <div *ngIf="correosArr.length>0; then botonAgregar;"></div>
+
+                  <ng-template #botonAgregar>
+                    <div [hidden]="newCorreos.length>0" class="d-flex justify-content-end mt-2">
+                      <button class="btn btn-primary text-end" (click)="agregarCorreos()">Crear correos</button>
+                    </div>
+                  </ng-template>
+
+
+
+                </div>
+              </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div *ngIf="newCorreos.length>0" class="d-flex justify-content-end mt-2">
+      <button class="btn btn-primary text-end" (click)="regresar()">regresar</button>
     </div>
   </ng-template>
 

@@ -20,6 +20,8 @@ import { StatisticsProcessComponent } from './components/admin-processes/statist
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
+import { SidebarUserComponent } from './components/sidebar-user/sidebar-user.component';
+
 
 
 
@@ -39,7 +41,9 @@ import { ToastrModule } from 'ngx-toastr';
     MySurveysComponent,
     FillOutComponent,
     CreateProcessComponent,
-    StatisticsProcessComponent
+    StatisticsProcessComponent,
+    SidebarUserComponent,
+
 
   ],
   imports: [
