@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-
+import { environment } from "../../../environments/environment";
 
 
 @Injectable({
@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 })
 export class TaskService {
 
-  private URL = 'http://localhost:8099';
+  private URL = environment.urlServer;
   constructor(private http: HttpClient) { }
 
   getEncuestas() {

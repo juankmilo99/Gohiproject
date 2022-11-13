@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { environment } from "../../../environments/environment";
 
 
 @Injectable({
@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthService {
 
-  private URL = 'http://localhost:8099'
+  private URL = environment.urlServer
 
   constructor(private http: HttpClient, private router: Router) { }
 

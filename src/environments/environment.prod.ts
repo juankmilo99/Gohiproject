@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  urlServer: 'https://gohi-server.onrender.com'
 };
