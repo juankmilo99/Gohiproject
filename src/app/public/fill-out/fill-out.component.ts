@@ -1,6 +1,7 @@
 import { TaskService } from '../../core/services/tasks.service';
 import { Component, OnInit } from '@angular/core';
 import { Respuesta } from 'src/app/core/models/respuesta.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-fill-out',
@@ -8,7 +9,7 @@ import { Respuesta } from 'src/app/core/models/respuesta.model';
   styleUrls: ['./fill-out.component.css']
 })
 export class FillOutComponent implements OnInit {
-  public myUrl: string;
+  public uuId: any;
   public options: Array<any>;
   public encuPreguntasArr: any = [];
   public dimensionesArr: any = [];
@@ -24,14 +25,18 @@ export class FillOutComponent implements OnInit {
     "codigo_opcion": 0
   };
 
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService, private activatedRoute: ActivatedRoute) {
+
     this.options = FillOutComponent.initOptions();
     this.respuestaSeleccionada = this.inicializarRespuesta();
-    this.myUrl = window.location.pathname;
-    console.log(this.myUrl.substring(24));
+
+
   }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params: any) => {
+      this.uuId= params.codigo;
+  });
 
     this.taskService.getDimensiones()
       .subscribe(
@@ -77,7 +82,7 @@ export class FillOutComponent implements OnInit {
   public optenerPreguntaDimensionUuid(codDimension: number): void {
     this.encuesta.codigo_dimension = codDimension;
     console.log(this.encuesta);
-    this.taskService.optenerPreguntaDimensionUuid(this.encuesta, this.myUrl.substring(22))
+    this.taskService.optenerPreguntaDimensionUuid(this.encuesta, this.uuId)
       .subscribe(
         res => {
           this.encuPreguntasArr = res;
@@ -105,6 +110,6 @@ export class FillOutComponent implements OnInit {
 
   }
 
-  }
+}
 
 
