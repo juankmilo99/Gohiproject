@@ -1,5 +1,5 @@
 import { MySurveysComponent } from './private/components/my-surveys/my-surveys.component';
-import { FillOutComponent } from './private/components/my-surveys/fill-out/fill-out.component';
+import { FillOutComponent } from './public/fill-out/fill-out.component';
 import { AdminSurveysComponent } from './private/components/admin-surveys/admin-surveys.component';
 import { CreateSurveyComponent } from './private/components/admin-surveys/create-survey/create-survey.component';
 import { DetailSurveyComponent } from './private/components/admin-surveys/detail-survey/detail-survey.component';

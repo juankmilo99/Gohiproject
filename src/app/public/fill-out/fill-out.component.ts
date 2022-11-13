@@ -1,4 +1,4 @@
-import { TaskService } from './../../../../core/services/tasks.service';
+import { TaskService } from '../../core/services/tasks.service';
 import { Component, OnInit } from '@angular/core';
 import { Respuesta } from 'src/app/core/models/respuesta.model';
 
@@ -28,7 +28,7 @@ export class FillOutComponent implements OnInit {
     this.options = FillOutComponent.initOptions();
     this.respuestaSeleccionada = this.inicializarRespuesta();
     this.myUrl = window.location.pathname;
-    console.log(this.myUrl.substring(22));
+    console.log(this.myUrl.substring(24));
   }
 
   ngOnInit(): void {
